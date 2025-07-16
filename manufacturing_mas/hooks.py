@@ -20,6 +20,26 @@ app_license = "mit"
 # 		"has_permission": "manufacturing_mas.api.permission.has_app_permission"
 # 	}
 # ]
+override_whitelisted_methods = {
+    "erpnext.manufacturing.doctype.work_order.work_order.create_job_cards": "manufacturing_mas.override.work_order.create_job_cards"
+}
+
+doc_events = {
+    "Job Card": {
+        "before_submit": "manufacturing_mas.events.job_card.create_job_card_array_second_to_last"
+    }
+}
+
+
+# manufacturing_mas/hooks.py
+override_whitelisted_methods = {}
+
+doc_events = {
+    "Work Order": {
+        "on_submit": "manufacturing_mas.overrides.work_order_override.create_job_card_only_first"
+    }
+}
+
 
 # Includes in <head>
 # ------------------
